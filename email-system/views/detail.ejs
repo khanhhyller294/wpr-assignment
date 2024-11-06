@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Chi Tiết Email</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <h2>Chào, <%= user.full_name %></h2>
+    <a href="/logout">Đăng xuất</a>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="/compose">Soạn thư</a></li>
+      <li><a href="/inbox">Hộp thư đến</a></li>
+      <li><a href="/outbox">Hộp thư đi</a></li>
+    </ul>
+  </nav>
+
+  <%- include('partials/navbar') %>
+
+  <h2>Chi Tiết Email</h2>
+  <p><strong>Từ:</strong> <%= email.sender_name %></p>
+  <p><strong>Tiêu đề:</strong> <%= email.subject %></p>
+  <p><strong>Nội dung:</strong> <%= email.body %></p>
+  <p><%= email.body %></p>
+
+  <% if (email.attachment) { %>
+    <p><strong>Tệp đính kèm:</strong> <a href="<%= email.attachment %>">Tải về</a></p>
+  <% } %>
+</body>
+</html>

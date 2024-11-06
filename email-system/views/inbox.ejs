@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hộp Thư Đến</title>
+  <link rel="stylesheet" href="/style-inbox.css">
+</head>
+<body class="no-navbar">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>EMAIL</h2>
+    <ul class="sidebar-menu">
+      <li><a href="/compose">Soạn Thư</a></li>
+      <li><a href="/inbox">Hộp Thư Đến</a></li>
+      <li><a href="/outbox">Hộp Thư Đi</a></li>
+      <li><a href="/deleted">Đã Xóa</a></li>
+      <li><a href="/logout">Đăng xuất</a></li>
+    </ul>
+
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Navbar -->
+    <% if (typeof showNavbar !== 'undefined' && showNavbar) { %>
+      <%- include('./partials/navbar') %>
+    <% } %>
+    
+    <h2>Hộp Thư Đến</h2>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <form action="/inbox" method="GET" style="display:inline;">
+        <button type="submit" class="refresh">Refresh</button>
+      </form>
+    </div>
+
+    <!-- Email Table -->
+    <% if (emails.length === 0) { %>
+      <p>Không có email nào.</p>
+    <% } else { %>
+      <table class="email-table">
+        <thead>
+          <tr>
+            <th><input type="checkbox" id="select-all"></th>
+            <th>Tên Người Gửi</th>
+            <th>Tiêu Đề</th>
+            <th>Mô Tả</th>
+            <th>Người Dùng</th>
+            <th>Ngày Gửi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% emails.forEach(email => { %>
+            <tr class="<%= email.temp_deleted ? 'deleted-email' : '' %>">
+              <td><input type="checkbox" class="email-checkbox" value="<%= email.id %>"></td>
+              <td><%= email.sender_name %></td>
+              <td><a href="/email/<%= email.id %>"><%= email.subject %></a></td>
+              <td><%= email.description %></td>
+              <td><%= email.user %></td>
+              <td><%= email.time_sent %></td>
+            </tr>
+          <% }) %>
+        </tbody>        
+      </table>
+    <% } %>
+  </div>
+  <script>
+    const selectAllCheckbox = document.getElementById('select-all');
+    const emailCheckboxes = document.querySelectorAll('.email-checkbox');
+    const selectedEmailsInput = document.getElementById('selectedEmails');
+  
+    // Chọn hoặc bỏ chọn tất cả email
+    selectAllCheckbox.addEventListener('change', function() {
+      emailCheckboxes.forEach(checkbox => {
+        checkbox.checked = selectAllCheckbox.checked;
+      });
+    });
+  
+    // Hàm để lấy ID các email được chọn và gửi form xóa
+    function deleteSelected() {
+      const selectedEmails = Array.from(emailCheckboxes)
+        .filter(checkbox => checkbox.checked)
+        .map(checkbox => checkbox.value); // Lấy giá trị ID từ checkbox
+  
+      if (selectedEmails.length > 0) {
+        selectedEmailsInput.value = JSON.stringify(selectedEmails);
+        document.getElementById('delete-form').submit();
+      } else {
+        alert('Vui lòng chọn ít nhất một email để xóa.');
+      }
+    }
+  </script>  
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soạn Thư</title>
+  <link rel="stylesheet" href="/style-outcom.css">
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>EMAIL</h2>
+    <ul class="sidebar-menu">
+      <li><a href="/compose" class="active">Soạn Thư</a></li>
+      <li><a href="/inbox">Hộp Thư Đến</a></li>
+      <li><a href="/outbox">Hộp Thư Đi</a></li>
+      <li><a href="/deleted/">Đã Xóa</a></li>
+      <li><a href="/logout">Đăng xuất</a></li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Optional Navbar -->
+    <% if (typeof showNavbar !== 'undefined' && showNavbar) { %>
+      <%- include('./partials/navbar') %>
+    <% } %>
+
+    <h2>Soạn Thư</h2>
+
+    <form action="/compose" method="POST" class="compose-form">
+      <div class="input-group">
+        <label for="to">To:</label>
+        <input type="email" id="to" name="to" placeholder="Nhập email người nhận" required>
+      </div>
+      <div class="input-group">
+        <label for="cc">CC:</label>
+        <input type="text" id="cc" name="cc" placeholder="Thêm CC">
+      </div>
+      <div class="input-group">
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" placeholder="Tiêu đề email">
+      </div>
+      <div class="input-group">
+        <label for="body">Message:</label>
+        <textarea id="body" name="body" rows="10" placeholder="Nhập nội dung thư..."></textarea>
+      </div>
+      <div class="button-group">
+        <button type="submit" class="button send-button">Gửi</button>
+        <button type="button" class="button draft-button">Lưu Nháp</button>
+        <button type="reset" class="button discard-button">Hủy</button>
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>

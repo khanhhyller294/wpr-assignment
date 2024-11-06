@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đăng Ký</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="form-container">
+    <h2>Đăng Ký Tài Khoản</h2>
+    <% if (error) { %>
+      <p style="color:red;"><%= error %></p>
+    <% } %>
+    <form action="/sign-up" method="POST">
+      <div class="input-group">
+        <span class="icon">👤</span>
+        <input type="text" name="fullName" placeholder="Họ và tên" required />
+      </div>
+      <div class="input-group">
+        <span class="icon">📧</span>
+        <input type="email" name="email" placeholder="Email" required />
+      </div>
+      <div class="input-group">
+        <span class="icon">🔒</span>
+        <input type="password" name="password" placeholder="Mật khẩu" required />
+      </div>
+      <div class="input-group">
+        <span class="icon">🔒</span>
+        <input type="password" name="confirmPassword" placeholder="Xác nhận mật khẩu" required />
+      </div>
+      <button type="submit" class="button">Đăng Ký</button>
+    </form>
+    <p>Đã có tài khoản? <a href="/">Đăng nhập</a></p>
+  </div>
+</body>
+</html>

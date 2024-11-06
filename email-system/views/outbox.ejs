@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hộp Thư Đi</title>
+  <link rel="stylesheet" href="/style-outcom.css">
+</head>
+<body class="no-navbar">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>EMAIL</h2>
+    <ul class="sidebar-menu">
+      <li><a href="/compose">Soạn Thư</a></li>
+      <li><a href="/inbox">Hộp Thư Đến</a></li>
+      <li><a href="/outbox">Hộp Thư Đi</a></li>
+      <li><a href="/deleted">Đã Xóa</a></li>
+      <li><a href="/logout">Đăng xuất</a></li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <h2>Hộp Thư Đi</h2>
+
+    <% if (emails.length === 0) { %>
+      <p>Không có email nào trong Hộp Thư Đi.</p>
+    <% } else { %>
+      <table class="email-table">
+        <thead>
+          <tr>
+            <th>Người Nhận</th>
+            <th>Tiêu Đề</th>
+            <th>Nội Dung</th>
+            <th>Thời Gian Gửi</th>
+            <th>Hành Động</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% emails.forEach(email => { %>
+            <tr id="email-<%= email.id %>">
+              <td><%= email.recipient_name %></td>
+              <td><a href="/email/<%= email.id %>"><%= email.subject %></a></td>
+              <td><%= email.body %></td>
+              <td><%= email.time_sent %></td>
+              <td>
+                <form action="/outbox/move-to-deleted/<%= email.id %>" method="POST" onsubmit="return confirm('Bạn có chắc chắn muốn di chuyển email này vào mục Đã Xóa không?');">
+                  <button type="submit">Xóa</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>       
+      </table>
+    <% } %>
+  </div>
+</body>
+</html>

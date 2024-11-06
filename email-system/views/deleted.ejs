@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Đã Xóa</title>
+  <link rel="stylesheet" href="/style-outcom.css">
+</head>
+<body class="no-navbar">
+
+  <div class="sidebar">
+    <h2>EMAIL</h2>
+    <ul class="sidebar-menu">
+      <li><a href="/compose">Soạn Thư</a></li>
+      <li><a href="/inbox">Hộp Thư Đến</a></li>
+      <li><a href="/outbox">Hộp Thư Đi</a></li>
+      <li><a href="/deleted">Đã Xóa</a></li>
+      <li><a href="/logout">Đăng xuất</a></li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <h2>Đã Xóa</h2>
+
+    <% if (emails.length === 0) { %>
+      <p>Không có email nào trong Đã Xóa.</p>
+    <% } else { %>
+      <table class="email-table">
+        <thead>
+          <tr>
+            <th>Người Nhận</th>
+            <th>Tiêu Đề</th>
+            <th>Nội Dung</th>
+            <th>Thời Gian Gửi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% emails.forEach(email => { %>
+            <tr>
+              <td><%= email.recipient_name %></td>
+              <td><a href="/email/<%= email.id %>"><%= email.subject %></a></td>
+              <td><%= email.body %></td>
+              <td><%= email.time_sent %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } %>
+  </div>
+</body>
+</html>

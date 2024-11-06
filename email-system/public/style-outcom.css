@@ -1,0 +1,187 @@
+/* Reset & Base styling */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body, html {
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+    background-color: #f4f5f7;
+  }
+  
+  /* Sidebar styling */
+  .sidebar {
+    width: 250px;
+    background-color: #37474f;
+    color: #ffffff;
+    padding: 20px;
+  }
+  
+  .sidebar h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .sidebar-menu {
+    list-style: none;
+    margin-bottom: 30px;
+  }
+  
+  .sidebar-menu li {
+    margin-bottom: 10px;
+  }
+  
+  .sidebar-menu li a {
+    color: #b0bec5;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .sidebar-menu li a.active,
+  .sidebar-menu li a:hover {
+    background-color: #546e7a;
+    color: #ffffff;
+  }
+  
+  /* Main Content styling */
+  .main-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  
+  .main-content h2 {
+    font-size: 28px;
+    color: #37474f;
+    margin-bottom: 20px;
+  }
+  
+  /* Compose form styling */
+  .compose-form .input-group {
+    margin-bottom: 15px;
+  }
+  
+  .compose-form .input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .compose-form .input-group input, 
+  .compose-form .input-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #ffffff;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .compose-form .input-group input::placeholder, 
+  .compose-form .input-group textarea::placeholder {
+    color: #bbb;
+  }
+  
+  .button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .send-button {
+    background-color: #28a745;
+  }
+  
+  .send-button:hover {
+    background-color: #218838;
+  }
+  
+  .draft-button {
+    background-color: #ffc107;
+    color: #333;
+  }
+  
+  .draft-button:hover {
+    background-color: #e0a800;
+  }
+  
+  .discard-button {
+    background-color: #dc3545;
+  }
+  
+  .discard-button:hover {
+    background-color: #c82333;
+  }
+  
+  .button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  /* Email Table styling */
+  .email-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .email-table th, .email-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .email-table th {
+    background-color: #e0e0e0;
+    color: #37474f;
+    font-weight: bold;
+  }
+  
+  .email-table td a {
+    color: #546e7a;
+    text-decoration: none;
+  }
+  
+  .email-table td a:hover {
+    text-decoration: underline;
+  }
+  
+  .email-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .no-navbar .navbar {
+    display: none;
+  }
+
+  /* Action Buttons styling */
+  .action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .action-buttons button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #546e7a;
+    color: #ffffff;
+    cursor: pointer;
+  }
+  
+  .action-buttons button:hover {
+    background-color: #455a64;
+  }
